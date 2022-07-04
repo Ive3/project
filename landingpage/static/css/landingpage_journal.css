@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: serif;
+}
+
+body {
+    background-color: #FFFDDE;
+
+
+}
+
+.filter .nav-link{
+    text-decoration: none;
+    font-size: 1em;
+    color: #0f00b8;
+    border: 1px outset #D9D7F1;
+    padding: 0.5em 1em;
+    display: block;
+}
+
+.filter .nav-link:hover{
+    background-color: #d0cbff;
+    border: 1px inset #D9D7F1;
+
+}
+
+.filter {
+    background-color: #D9D7F1;
+    padding: 2em 0;
+    border-bottom: 1px outset #D9D7F1;
+    overflow: auto;
+
+}
+
+.filter ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 1em;
+}
+.filter ul li form {
+    display: flex;
+
+}
+.filter ul li form input {
+    font-size: 1em;
+    padding: .4em;
+    border-bottom: 1px outset #D9D7F1;
+    color: #0f00b8;
+    margin-right: .5em;
+    margin-top: .5em;
+}
+
+.filter ul li form input:focus {
+    outline: none;
+    color: #0f00b8;
+    background-color: #fff;
+    border-bottom: 1px inset #D9D7F1;
+
+}
+
+
+.filter ul li form .btn {
+    background: none;
+    background-color: #D9D7F1;
+    color: #0f00b8;
+    border: 1px outset #D9D7F1;
+    font-size: 1.2em;
+}
+
+.filter ul li form .btn:focus {
+    background-color: #fff;
+    border: 1px inset #D9D7F1;
+
+}
+
+
+/* Table --------------------------------------------- */
+.students {
+    color: #0f00b8;
+    text-align: center;
+    padding: 1em;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.students .message{
+    border: 1px outset #D9D7F1;
+    background-color: #D9D7F1;
+    font-size: 1.3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:30%;
+    padding: .7em;
+    color: #0f00b8;
+    margin-bottom: 1em;
+    box-shadow: 0 5px 5px #0f00b8;
+}
+
+.students .message .closebtn{
+    cursor: pointer;
+}
+
+.students h2 {
+    margin: 1em 0;
+}
+
+.students table {
+    border: 1px inset #D9D7F1;
+    padding: 1em;
+    border-collapse: collapse;
+    font-size: 1.4em;
+    text-align: center;
+    margin: auto;
+}
+
+.students table thead {
+    background-color: #D9D7F1;
+    color: #0f00b8;
+}
+
+.students table th,
+td {
+    border: 1px outset #D9D7F1;
+    padding: 1em;
+}
+
+.students table tbody {
+    background-color: #f5f5ff;
+}
+
+.students table tbody tr:hover {
+    background-color: #ffffff;
+}
+
+.students table tbody .unpaid:nth-child(12) {
+    background-color: #ffe4e4;
+    color: #7e0000;
+}
+
+.students table tbody .paid:nth-child(12) {
+    background-color: #f5ffe0;
+    color: #4d7400;
+}
+
+.students table tbody .update{
+    text-decoration: none;
+    font-size: 1em;
+    color: #0f00b8;
+    border: 1px outset #D9D7F1;
+    padding: 0.5em 1em;
+    margin-top: .5em;
+    display: block;
+    background-color: #D9D7F1;
+}
+
+.students table tbody .update:focus{
+    border: 1px inset #D9D7F1;
+    background-color: #f5f5ff;
+
+}
+
+
+@media (max-width: 1440px){
+    .students .message{
+        width: 40%;
+    }
+}
+
+@media (max-width: 1200px){
+    .students .message{
+        width: 50%;
+    }
+}
+
+@media (max-width: 1024px){
+    .students .message{
+        width: 60%;
+    }
+}
+
+@media (max-width: 768px){
+    .students .message{
+        width: 60%;
+    }
+}
+
+@media (max-width: 576px){
+    .students .message{
+        width: 90%;
+        font-size: 1em;
+    }
+}

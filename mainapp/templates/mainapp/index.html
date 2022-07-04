@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>Portfolio</h1>
+    </header>
+
+    <section>
+        <div class="links">
+            {% if user.is_authenticated %}
+            <a href="{% url 'registration:logout' %}">Logout: {{ user.username }}</a>
+            <a href="{% url 'registration:profile' user.pk %}">Profile</a>
+            {% else %}
+            <a href="{% url 'registration:login' %}">Login</a>
+            <a href="{% url 'registration:registration' %}">Registraion</a>
+
+            {% endif %}
+            <a href="{% url 'blog:posts' %}">Blog</a>
+            <a href="{% url 'shop:shop' %}">Shop</a>
+            <a href="{% url 'landingpage:allview' %}">Course</a>
+            <a href="{% url 'gallery:main_page' %}">Gallery</a>
+        </div>
+    </section>
+    <footer>
+        <div>&copy; {% now "Y" %} Lorem ipsum dolor sit amet.</div>
+    </footer>
+
+</div>
+
+</body>
+</html>

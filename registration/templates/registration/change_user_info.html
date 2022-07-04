@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account::User page</title>
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>Change info</h1>
+    </header>
+    <section>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ myform.media }}
+            {{ form }}
+            {{ myform }}
+            <input class="submit" type="submit" value="Save">
+
+        </form>
+        <div class="registration">
+
+            <a href="{% url 'registration:profile' user.pk %}">Back</a>
+            <a href="{% url 'mainapp:index' %}">Main page</a>
+
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

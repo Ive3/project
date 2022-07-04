@@ -1,0 +1,10 @@
+Dear {{ user.username }}!
+
+You have registered on the site "Portfolio".
+You need to activate to verify your identity.
+To do this, please follow the link
+
+{{ host }}{% url 'registration:user_activated' sign=sign %}
+
+Goodbye!
+Sincerely, the administration of the site "Portfolio".

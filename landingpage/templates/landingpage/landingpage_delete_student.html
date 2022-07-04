@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course::Delete student</title>
+    <link rel="stylesheet" href="{% static 'css/landingpage_delete.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+<body>
+    <div class="container">
+
+        <section>
+            <ul class="navbar">
+                <li class="nav-item"><a href="{% url 'landingpage:allview' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:user_edit' user.pk %}" class="nav-link">Edit</a></li>
+            </ul>
+        </section>
+        <section class="delete">
+            <h1>Delete {{ student.name }}</h1>
+
+            <div class="del-card">
+                <div class="card">
+                    <table class="del-table">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    {{ student.name }} {{ student.surname }}
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="del-tbody">
+                            <tr>
+                                <th><i class="bi bi-file-earmark-person-fill"></i></th>
+                                <th>Name:</th>
+                                <td>{{ student.name }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-file-earmark-person-fill"></i></th>
+                                <th>Surname:</th>
+                                <td>{{ student.surname }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-telephone-fill"></i></th>
+                                <th>Phone:</th>
+                                <td>{{ student.phone }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-grid-3x3-gap"></i></th>
+                                <th>Group:</th>
+                                <td>{{ student.group }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-calendar2-month"></i></th>
+                                <th>Birth:</th>
+                                <td>{{ student.birth }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-sort-numeric-down"></i></th>
+                                <th>Age:</th>
+                                <td>{{ student.age }}</td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot class="del-tfoot">
+                            
+                            <tr>
+                                <td colspan="3">
+                                    <form action="" method="post" class="delete-btn">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Delete" class="btn">
+                                    </form>
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                    
+                    
+                    
+                </div>
+            </div>
+
+        
+        </section>
+    </div>
+</body>
+</html>

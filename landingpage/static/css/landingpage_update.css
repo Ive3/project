@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #FFFDDE;
+}
+
+.navbar{
+    background-color: #D9D7F1;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 2em 0;
+    border-bottom: 1px outset #D9D7F1;
+}
+
+.navbar .nav-link{
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #0f00b8;
+    border: 1px outset #D9D7F1;
+    padding: 0.5em 1em;
+    display: block;
+}
+
+.navbar .nav-link:hover{
+    background-color: #d0cbff;
+    border: 1px inset #D9D7F1;
+
+}
+
+.add-form {
+    text-align: center;
+    padding-top: 1em;
+}
+
+.add-form h1{
+    margin: 1em 0 0 0;
+    color: #0f00b8;
+}
+
+.add-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2em 0;
+    color: #a19700;
+}
+
+
+
+.add-form form ul {
+    list-style-type: none;
+    text-align: start;
+}
+
+.add-form form input, select{
+    background-color: #fff;
+    margin-bottom: 1em;
+    padding: .7em;
+    font-size: 1.2em;
+    width: 40%;
+    border: 1px outset #FFFDDE;
+    color: #978d00;
+
+}
+.add-form form input:focus, select:focus{
+    outline: none;
+    color: #978d00;
+    border: 1px inset #FFFDDE;
+
+}
+
+
+.add-form form label{
+    margin-top: 1em;
+    margin-bottom: 0.4em;
+    padding: 0;
+    font-size: 1.5em;
+    width: 30%;
+}
+
+.add-form form input[type="checkbox" i] {
+    width: 1em;
+    height: 1em;
+    margin: 0;
+}
+
+.add-form form .btn{
+    background-color: #D9D7F1;
+    border:1px outset #D9D7F1;
+    color: #0f00b8;
+}
+
+.add-form form .btn:focus{
+    background-color: #cecaff;
+    border:1px inset #D9D7F1;
+    color: #0f00b8;
+
+}
+
+.add-form form a{
+    margin: 1em 0;
+    font-size: 1em;
+}
+
+/* Media -------------------------------------------- */
+@media (max-width:1600px){
+    .add-form form input, select{
+        width: 50%;
+    }
+}
+
+@media (max-width:992px){
+    .add-form form input, select{
+        width: 70%;
+    }
+}
+
+@media (max-width:768px){
+    .add-form form input, select{
+        width: 80%;
+    }
+}
+
+@media (max-width:576px){
+    .add-form form input, select{
+        width: 90%;
+        font-size: 1em;
+    }
+}

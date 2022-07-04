@@ -1,0 +1,43 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %} Blog::About {% endblock title %}
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+<h2>About me</h2>
+<div class="posts">
+    {% if about %}
+    <div class="post">
+
+        <img src="{{ about.image.url }}" alt="image">
+        <p>{{ about.description }}</p>
+
+        <video controls>
+            <source type="video/mp4" src="{{ about.video.url }}">
+        </video>
+
+        <ul>
+            <h2>follow me:</h2>
+            {% for link in sociallinks %}
+
+            <li>{{ link.name }}</li>
+
+            {% for l in link.links_set.all %}
+            <a href="{{ l.links }}">{{ l.links }}</a><br>
+            {% endfor %}
+            <br>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'blog:posts' %}" class="readmore">back</a>
+    </div>
+
+    {% else %}
+    <h2>There is not information About us yet</h2>
+    {% endif %}
+</div>
+
+
+{% endblock content %}

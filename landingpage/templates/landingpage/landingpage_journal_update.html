@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course::Update student</title>
+    <link rel="stylesheet" href="{% static 'css/landingpage_update_student.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="filter">
+            <ul class="navbar">
+                <li class="nav-item"><a href="{% url 'landingpage:allview' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:user_journal' user.pk %}" class="nav-link">Edit</a></li>
+            </ul>
+
+        </section>
+
+
+        <section class="students">
+
+
+            <table>
+                <caption>
+                    <h2>Update student</h2>
+                </caption>
+
+                <thead>
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Phone</th>
+                        <th>Birth</th>
+                        <th>Age</th>
+                        <th>Group</th>
+                        <th>Time</th>
+                        <th>Dsw</th>
+                        <th>Level</th>
+                        <th>Teacher</th>
+                        <th>Paid</th>
+                        <th>Edit</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="form-st">
+                        <form class="form" action="" method="post">
+                            {% csrf_token %}
+                            <td>{{ form.name }}</td>
+                            <td>{{ form.surname }}</td>
+                            <td>{{ form.phone }}</td>
+                            <td>{{ form.birth }}</td>
+                            <td>{{ pupil.age }}</td>
+                            <td>{{ form.group }}</td>
+                            <td>{{ pupil.group.lesson_time }}</td>
+                            <td>{{ pupil.group.days_of_week }}</td>
+                            <td>{{ pupil.group.level }}</td>
+                            <td>{{ pupil.group.teacher }}</td>
+                            <td>{{ form.paid }}</td>
+                            {{form.author}}
+                            <td><input type="submit" value="Save"></td>
+                        </form>
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+
+
+        </section>
+    </div>
+
+</body>
+
+</html>

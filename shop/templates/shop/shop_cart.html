@@ -1,0 +1,133 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}Shop::Cart {% endblock title %}
+
+
+{% block content %}
+<!-- main section --------------------------------------- -->
+
+<section class="container pb-5">
+
+
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="alert {{ message.tags }} mt-3 alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="row mt-3 ">
+        <h3 class="mb-5 pb-3 border-bottom">Cart</h3>
+
+
+
+
+        <div class="col-lg-12">
+            <div class="row">
+
+
+                <div class="col-lg-12 overflow-auto">
+                    <table
+                        class="table table-bordered table-striped table-hover align-middle text-center shadow ">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product name</th>
+                                <th>quantity</th>
+                                <th>Add more</th>
+                                <th>price per one</th>
+                                <th>total price</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for item in cart %}
+                            {% with product=item.product %}
+                            <tr>
+                                <td><img src="{{ product.thumbnail.url }}" alt="" class="img-fluid"
+                                        width="100px"></td>
+                                <td><a href="{{ product.get_absolute_url }}"
+                                        class="btn btn-outline-primary">{{ product.name }}</a></td>
+                                <td>{{ item.quantity }}</td>
+                                <td>
+                                    <form action="{% url 'shop:add_cart' product.id %}"
+                                        method="post" class="row">
+                                        {% csrf_token %}
+                                        <div class="offset-lg-1 col-lg-6">
+                                            {{ item.form.quantity }}
+                                            {{ item.form.update }}
+                                        </div>
+                                        <input class="col-lg-4 col-form-label btn btn-primary"
+                                            value="Update" type="submit">
+                                    </form>
+                                </td>
+                                <td>{{ item.price }} $</td>
+                                <td>{{ item.total_price }} $</td>
+                                <td><a href="{% url 'shop:remove_cart' product.id %}"
+                                        class="btn btn-primary">Remove</a></td>
+                            </tr>
+                            {% endwith %}
+                            {% endfor %}
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <th colspan="2">Total</th>
+                                <th>{{ cart.total_items }}</th>
+                                <th colspan="2"></th>
+                                <th>{{ cart.get_total_price }}$</th>
+                                <th>
+                                    <button type="button" class="btn btn-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Checkout</button>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</section>
+<!-- end main section --------------------------------------- -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'shop:cart_order' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="address" class="col-form-label">Address:</label>
+                        <input type="text" name='address' class="form-control" id="address">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="col-form-label">Phone:</label>
+                        <input type="text" name="phone" id="phone" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary float-end">Send message</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

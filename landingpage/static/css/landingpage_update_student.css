@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #FFFDDE;
+
+}
+
+.navbar{
+    background-color: #D9D7F1;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.navbar .nav-link{
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #0f00b8;
+    border: 1px outset #D9D7F1;
+    padding: 0.5em 1em;
+    display: block;
+}
+
+.navbar .nav-link:hover{
+    background-color: #d0cbff;
+    border: 1px inset #D9D7F1;
+
+}
+
+.filter {
+    background-color: #D9D7F1;
+    padding: 2em 0;
+    border-bottom: 1px oldlace #D9D7F1;
+    border-bottom: 1px outset #D9D7F1;
+}
+
+
+
+
+/* Table --------------------------------------------- */
+.students {
+    color: #0f00b1;
+    text-align: center;
+    padding: 1em;
+    font-size: .8em;
+    overflow: auto;
+}
+
+.students table .form-st input, select{
+    font-size: 1em;
+    padding:0.5em 1em;
+    background-color: #f5f5ff;
+    border: 1px outset #f5f5ff;
+    color: #0f00b1;
+
+}
+
+.students table .form-st input:focus, select:focus{
+    outline: none;
+    border: 1px inset #f5f5ff;
+
+}
+
+.students h2 {
+    margin: 1em 0;
+}
+
+.students table {
+    border: 1px inset #D9D7F1;
+    padding: 1em;
+    border-collapse: collapse;
+    font-size: 1.5em;
+    text-align: center;
+    margin: auto;
+}
+
+.students table thead {
+    background-color: #D9D7F1;
+    color: #0f00b1;
+}
+
+.students table th,
+td {
+    border: 1px outset #D9D7F1;
+    padding: 0.5em;
+}
+
+.students table tbody {
+    background-color: #f5f5ff;
+}
+
+.students table tbody tr:hover {
+    background-color: #ffffff;
+}
+
+.students table tbody .unpaid:nth-child(12) {
+    background-color: #ffe4e4;
+    color: #7e0000;
+}
+
+.students table tbody .paid:nth-child(12) {
+    background-color: #f5ffe0;
+    color: #4d7400;
+}
+
+
+
+
+.students .form-st input[type="checkbox" i] {
+    width: 2em;
+    height: 2em;
+}

@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course::Edit</title>
+    <link rel="stylesheet" href="{% static 'css/landingpage_edit.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+<body>
+    <div class="container">
+        <section class="navbar">
+            <ul class="nav">
+                <li class="nav-item"><a href="{% url 'landingpage:allview'%}#menu" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:user_page' user.pk %}" class="nav-link">Your page</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:user_journal' user.pk %}" class="nav-link">Journal</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:add_student' %}" class="nav-link">Add student</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:add_teacher' %}" class="nav-link">Add teacher</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:add_group' %}" class="nav-link">Create group</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:add_course' %}" class="nav-link">Add course</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:add_location' %}" class="nav-link">Add location</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:add_gallery' %}" class="nav-link">Add Gallery</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:add_social' %}" class="nav-link">Add Social</a></li>
+            </ul>
+        </section>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %} Blog::Create/update category {% endblock title %}
+
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/create_cat.css' %}">
+{% endblock csslink %}
+
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="message">
+    {{ message }}
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+</div>
+{% endfor %}
+{% endif %}
+
+<h2>Create new / update categories</h2>
+<div class="create">
+    <div class="post">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            
+            <input type="submit" id="createpost" value="create category">
+        </form>
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+background-color: #dedfe4;
+}
+
+
+section{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+section h1{
+    color: gray;
+    font-size: 2em;
+}
+
+
+
+section img{
+    width: 30%;
+}
+
+@media (max-width:1024px){
+    section h1{
+        font-size: 2em;
+    }
+    section img{
+        width: 40%;
+    }
+}
+
+@media (max-width:768px){
+    section h1{
+        font-size: 1.5em;
+    }
+    section img{
+        width: 50%;
+    }
+}
+
+@media (max-width:576px){
+    section h1{
+        font-size: 1.5em;
+    }
+    section img{
+        width: 70%;
+    }
+}
+
+
+@media (max-width:480px){
+    section h1{
+        font-size: 1.3em;
+    }
+    section img{
+        width: 80%;
+    }
+}

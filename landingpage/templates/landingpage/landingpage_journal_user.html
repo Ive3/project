@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course::User journal</title>
+    <link rel="stylesheet" href="{% static 'css/landingpage_journal.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="filter">
+            <ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'landingpage:user_edit' user.pk %}">Back</a>
+                </li>
+                <li>
+                    <form action="{% url 'landingpage:user_journal' user.pk %}" method="get">
+                        <input list="students" name="student" id="student" placeholder="Students">
+                        <datalist id="students">
+                            {% for student in students %}
+                            <option value="{{ student.name }}">{{ student.phone }}</option>
+                            {% endfor %}
+                        </datalist>
+                        <input class="btn" type="submit" value="show">
+                    </form>
+                </li>
+                <li class="">
+                    <form action="{% url 'landingpage:user_journal' user.pk %}" method="get">
+                        <input list="groups" name="group" id="group" placeholder="Group">
+                        <datalist id="groups">
+                            {% for group in groups %}
+                            <option value="{{ group }}">
+                                {% endfor %}
+                        </datalist>
+                        <input class="btn" type="submit" value="show">
+                    </form>
+                </li>
+                <li>
+                    <form action="{% url 'landingpage:user_journal' user.pk %}" method="get">
+                        <input list="levels" name="level" id="level" placeholder="Level">
+                        <datalist id="levels">
+                            {% for g in groups %}
+                            {% ifchanged %}
+                            <option value="{{ g.level }}">
+                            {% endifchanged %}
+                            {% endfor %}
+                        </datalist>
+                        <input class="btn" type="submit" value="show">
+                    </form>
+                <li>
+                    <form action="{% url 'landingpage:user_journal' user.pk %}" method="get">
+                        <input list="teachers" name="teacher" id="teahcer" placeholder="Teacher">
+                        <datalist id="teachers">
+                            {% for teacher in teachers %}
+                            <option value="{{ teacher }}">
+                                {% endfor %}
+                        </datalist>
+
+
+                        <input class="btn" type="submit" value="show">
+                    </form>
+                </li>
+
+                <li>
+                    <form action="{% url 'landingpage:user_journal' user.pk %}" method="get">
+                        <input name="paid" class="btn" type="submit" value="Paid">
+                    </form>
+                </li>
+                <li>
+                    <form action="{% url 'landingpage:user_journal' user.pk %}" method="get">
+                        <input name="unpaid" class="btn" type="submit" value="Not paid">
+                    </form>
+                </li>
+            </ul>
+
+        </section>
+
+
+        <section class="students">
+        
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                {{ message }}
+                <span class="closebtn"
+                    onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+
+            {% if show or ts %}
+
+            <table>
+                <caption>
+                    <h2>Journal</h2>
+                </caption>
+                {% if not ts %}
+
+                <thead>
+
+                    <tr>
+                        <th>№</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Phone</th>
+                        <th>Birth</th>
+                        <th>Age</th>
+                        <th>Group</th>
+                        <th>Time</th>
+                        <th>Dsw</th>
+                        <th>Level</th>
+                        <th>Teacher</th>
+                        <th>Paid</th>
+                        <th>Edit</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    {% for s in show %}
+
+                    <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ s.name }}</td>
+                        <td>{{ s.surname }}</td>
+                        <td>{{ s.phone }}</td>
+                        <td>{{ s.birth}}</td>
+                        <td>{{ s.age }}</td>
+                        <td>{{ s.group.name }}</td>
+                        <td>{{ s.group.lesson_time }}</td>
+                        <td>{{ s.group.days_of_week }}</td>
+                        <td>{{ s.group.level }}</td>
+                        <td>{{ s.group.teacher.name }}</td>
+                        {% if s.paid %}
+                        <td class="paid">Complete</td>
+                        {% else %}
+                        <td class="unpaid">Pending</td>
+                        {% endif %}
+                        <td><a class="update" href="{% url 'landingpage:update_student' s.pk %}">Change</a>
+                            <a class="update" href="{% url 'landingpage:delete_student' s.pk %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+
+                </tbody>
+
+                
+                {% else %}
+                <thead>
+
+                    <tr>
+                        <th>№</th>
+                        <th>Name</th>
+                        <th>Group</th>
+                        <th>Level</th>
+                        <th>Time</th>
+                        <th>DsW</th>
+                        <th>Students</th>
+                        <th>Group</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    {% for t in ts %}
+                    <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ t.teacher.name }}</td>
+                        <td>{{ t.name }}</td>
+                        <td>{{ t.level }}</td>
+                        <td>{{ t.lesson_time }}</td>
+                        <td>{{ t.days_of_week}}</td>
+                        <td>{{ t.pupil_set.count }}</td>
+                        <td>
+                            <a class="update" href="{% url 'landingpage:update_group' t.pk %}">Change</a>
+                            <a class="update" href="{% url 'landingpage:delete_group' t.pk %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                {% endif %}
+
+            </table>
+            {% else %}
+
+            <h2>Choose filter</h2>
+
+            {% endif %}
+
+        </section>
+    </div>
+
+</body>
+
+</html>

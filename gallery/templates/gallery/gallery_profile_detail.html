@@ -1,0 +1,94 @@
+{% extends 'base_gallery/base_gallery.html' %}
+{% load static %}
+
+{% block title %}Gallery::{{ request.user.username }}'s picture {{ picture.name }}{% endblock title %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/gallery_detail.css' %}">
+{% endblock css %}
+        {% block content %}
+
+        <section>
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                {{ message }}
+                <span class="closebtn"
+                    onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="detail">
+                <div class="action">
+                    <a class="do" href="{% url 'gallery:update_gallery' picture.pk %}">Update</a>
+                    <a class="do" href="{% url 'gallery:delete_gallery' picture.pk %}">Delete</a>
+                </div>
+                
+
+                <div class="card">
+
+                    <h1 class="title-card">{{ picture.name }}</h1>
+                    <img src="{{ picture.image.url }}" alt="" id="i">
+                    <div class="info">
+                        <div class="desc">{{ picture.description|safe }}</div>
+                    </div>
+
+                    <div class="foot">
+                        <div class="tags">
+                            {% for tag in picture.tags.all %}
+                            <a class="tag" href="{% url 'gallery:by_tags' tag.pk %}">{{ tag.name}}</a>
+                            {% endfor %}
+                        </div>
+                        <div class="d-v">
+
+                            <a href="{{ picture.image.url }}" class="download" name="d" download>
+                                Download ({{ picture.image.size|filesizeformat}})
+                            </a>
+
+                            <span class="views"> views: {{ picture.views }}</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 class="recent">Your recently</h2>
+            <div class="recently">
+                {% for recent in recently %}
+                <a href="{% url 'gallery:detail_author_gallery' recent.pk %}">
+                    <figure class="recent-card">
+                        <img src="{{ recent.image.url }}" alt="" width="300px">
+
+                        <figcaption>
+                            {{ recent.name }}
+                        </figcaption>
+                    </figure>
+                </a>
+
+                {% endfor %}
+
+
+            </div>
+
+            <h2 class="recent">Your most popular</h2>
+            <div class="recently">
+
+                {% for popular in most_viewed %}
+                <a href="{% url 'gallery:detail_author_gallery' popular.pk %}">
+
+                    <figure class="recent-card">
+                        <img src="{{ popular.image.url }}" alt="" width="300px">
+                        <figcaption>
+                            {{ popular.name }}
+                        </figcaption>
+                    </figure>
+                </a>
+
+                {% endfor %}
+
+            </div>
+        </section>
+        {% endblock content %}

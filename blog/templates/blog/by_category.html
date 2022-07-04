@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Blog::By category {% endblock title %}
+
+{% block content %}
+<h2>{{ current_category }}</h2>
+
+<div class="posts">
+    {% for post in posts %}
+    <div class="post">
+        <a href="{% url 'blog:detail_post' post.slug %}{{ all }}" class="aimg"><img src="{{ post.thumbnail.url }}" alt="image"></a>
+        <h3>{{ post.title }}</h3>
+        <div class="paragraph">{{ post.short_description|safe }}</div>
+        <a href="{% url 'blog:detail_post' post.slug %}{{ all }}" class="readmore">readmore</a>
+        <aside>views</aside>
+        <aside>added</aside>
+    </div>
+    {% endfor %}
+</div>
+{% if page_obj.has_other_pages %}
+<div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+        {% endif %}
+
+        <a href="">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+
+        {% endif %}
+</div>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% if page_obj.has_other_pages %}
+<div class="pagination">
+    {% if page_obj.has_previous %}
+    <a class="prev" href="?{% if keyword %}search={{keyword}}&{% endif %}page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current-page">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+    <a class="next" href="?{% if keyword %}search={{keyword}}&{% endif %}page={{ page_obj.next_page_number }}">next</a>
+    {% endif %}
+</div>
+{% endif %}

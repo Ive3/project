@@ -1,0 +1,943 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #D9D7F1;
+    background-color: #FFFDDE;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #ffa4a4, #9085ff);
+    border: 1px outset #FFFDDE;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #ff3b3b, #3f2eff);
+}
+
+.container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+
+}
+
+section {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    border-top: 2px solid #FFFDDE;
+    border-bottom: 2px solid #FFFDDE;
+
+}
+
+section .empty {
+    margin: auto;
+    text-align: center;
+}
+
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #D9D7F1;
+    font-size: 2em;
+}
+
+.header .message{
+    border: 1px outset #D9D7F1;
+    background-color: #eeecfc;
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:50%;
+    padding: .7em;
+    color: #0f00b8;
+    margin-bottom: 1em;
+    box-shadow: 0 5px 5px #0f00b8;
+}
+
+.header .message .closebtn{
+    cursor: pointer;
+}
+
+.header h1 {
+    color: #0f00b8;
+    border-bottom: 3px solid #0f00b8;
+}
+
+.header ul {
+    margin-top: 1em;
+    list-style-type: none;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1%;
+
+}
+
+.header ul li {
+    border-bottom: 3px double #0f00b8;
+
+}
+
+.header ul li::after {
+    content: '';
+    position: absolute;
+    height: 1%;
+    background-color: #FFFDDE;
+    transition: 0.3s;
+    left: 0;
+    transform-origin: center;
+    width: 100%;
+    transform: scaleX(0);
+
+}
+
+.header ul li:hover::after {
+    transform: scaleX(1);
+}
+
+.header ul li a {
+    color: #0f00b8;
+    text-decoration: none;
+    font-size: 34px;
+    line-height: 70px;
+    letter-spacing: 10px;
+    display: block;
+}
+
+
+/* Courses ------------------------------------------------------------------ */
+.courses {
+    background-color: #E7FBBE;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.courses .course-card:first-child {
+    margin: 0 0 0 50%;
+}
+
+.courses .course-card {
+    margin: 0 0 0 20%;
+    min-width: 30vw;
+    border: 2px outset #E7FBBE;
+    scroll-snap-align: center;
+    background-color: #f7ffe3;
+    box-shadow: 0 10px 15px #5d8b00;
+
+}
+
+.courses .course-card:last-child {
+    margin: 0 50% 0 20%;
+}
+
+.course-card .card .course-table{
+    text-align: start;
+    margin: auto;
+    border-collapse: collapse;
+    margin: 1em;
+    color: #5d8b00;
+}
+ 
+.course-card .card .course-table thead th{
+    border: none;
+    font-size: 1.5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+.course-card .card .course-table thead th i{
+    font-size: 5em;
+}
+
+.course-card .card .course-table .course-tbody th{
+    border-bottom: 1px inset #d1ff76;
+    padding: 1em 0.5em;
+    font-size: 1em;
+    vertical-align: middle;
+    text-align: start;
+}
+.course-card .card .course-table .course-tbody td{
+    border-bottom: 1px inset #d1ff76;
+    padding: 1em 0.5em;
+    font-size: 1em;
+    vertical-align: middle;
+    text-align: start;
+    width: 100%;
+
+}
+
+.course-card .card .course-table .course-tbody th i{
+    font-size: 2em;
+    text-align: center;
+    padding-left: 1em;
+}
+
+.course-card .card .course-tfoot th{
+    padding: 1em 0;
+}
+
+.course-card .card .course-tfoot th h3{
+    padding-top: .2em;
+    font-size: 2em;
+}
+
+.course-card .card .course-tfoot th a{
+    text-decoration: none;
+    border: 1px outset #E7FBBE;
+    background-color: #E7FBBE;
+    padding: .5em 1em;
+    color: #5d8b00;
+    font-size: 1em;
+}
+
+.course-card .card .edit_del_course td{
+    padding: 1em
+}
+
+
+
+.edit_del_course a {
+    text-decoration: none;
+    border: 1px outset #E7FBBE;
+    color: #5d8b00;
+    background-color: #E7FBBE;
+    padding: .5em;
+}
+
+.edit_del_course a:focus {
+    border: 1px inset #E7FBBE;
+}
+
+/* Teachers ------------------------------------------------------------------ */
+
+.teachers {
+    background-color: #FFCBCB;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.teachers .teacher-card:first-child {
+    margin: 0 0 0 50%;
+}
+
+.teachers .teacher-card {
+    margin: 0 0 0 20%;
+    min-width: 30vw;
+    border: 2px outset #FFCBCB;
+    scroll-snap-align: center;
+    background-color: #ffe7e7;
+    color: #6b0000;
+    box-shadow: 0 10px 15px #6b0000;
+}
+
+.teachers .teacher-card:last-child {
+    margin: 0 50% 0 20%;
+}
+
+.teacher-card .card{
+    margin: 1em 1em;
+
+}
+
+.teacher-card .card .table-teacher{
+    text-align: start;
+    border-collapse: collapse;
+}
+ 
+.teacher-card .card .table-teacher thead th{
+    border: none;
+    font-size: 1.5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+
+}
+
+.teacher-card .card .table-teacher thead th img{
+    border: 2px inset #FFCBCB;
+    width: 60%;
+}
+
+
+.teacher-card .card .table-teacher .teacher-tbody th{
+    border-bottom: 1px inset #ffa4a4;
+    padding: 1em 0.5em;
+    font-size: 1em;
+    vertical-align: middle;
+    text-align: start;
+}
+
+.teacher-card .card .table-teacher .teacher-tbody td{
+    border-bottom: 1px inset #ffa4a4;
+    padding: 1em 0.5em;
+    font-size: 1em;
+    vertical-align: middle;
+    text-align: start;
+    width: 100%;
+
+}
+
+
+.teacher-card .card .table-teacher .teacher-tbody th i{
+    font-size: 2em;
+    text-align: center;
+    padding-left: 1em;
+}
+
+.teacher-card .card .teacher-tfoot td{
+    padding: 1em;
+
+}
+
+.edit_del_teacher a {
+    text-decoration: none;
+    border: 1px outset #FFCBCB;
+    color: #6b0000;
+    background-color: #FFCBCB;
+    padding: .5em;
+    display: inline-block;
+}
+
+.edit_del_teacher a:focus {
+    border: 1px inset #FFCBCB;
+}
+
+/* Gallery ------------------------------------------------ */
+.gallery {
+    background-color: #E7FBBE;
+
+}
+
+.gallery figure {
+    color: #5d8b00;
+    border: 2px outset #E7FBBE;
+    background-color: #f6ffe5;
+    margin: 1%;
+    display: inline-block;
+    padding: 0.5em;
+    vertical-align: middle;
+    box-shadow: 0 10px 15px #5d8b00;
+
+}
+
+.gallery figure img {
+    cursor: pointer;
+    border: 2px inset #E7FBBE;
+    width: 20em;
+}
+
+.edit_del_gallery {
+    text-align: end;
+    margin: 1em 0 0.5em 0;
+}
+
+.edit_del_gallery a {
+
+    text-decoration: none;
+    border: 1px outset #E7FBBE;
+    color: #5d8b00;
+    background-color: #E7FBBE;
+    padding: .5em;
+}
+
+.edit_del_gallery a:focus {
+    border: 1px inset #E7FBBE;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 0;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Black w/ opacity */
+}
+
+.modal:target {
+    display: block;
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    padding-top: 4em;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 60%;
+    text-align: center;
+    color: #ccc;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 1.1em;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content,
+#caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #f1f1f1;
+    font-size:3em;
+    font-weight: bold;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+/* Contact --------------------------------------------------- */
+
+.contact {
+    background-color: #FFFDDE;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact .contact-card:first-child {
+    margin: 0 0 0 50%;
+}
+
+.contact .contact-card {
+    margin: 0 0 0 20%;
+    min-width: 50vw;
+    border: 2px outset #FFFDDE;
+    scroll-snap-align: center;
+    background-color: #fffef1;
+    color: #867d00;
+    box-shadow: 0 10px 15px #867d00;
+}
+
+.contact .contact-card:last-child {
+    margin: 0 50% 0 20%;
+}
+
+.contact .table-location{
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse;
+    margin: 1em;
+}
+ 
+
+
+.contact .table-location .location-tbody th{
+    border-bottom: 1px inset #fff01f;
+    padding: 1em 0.5em;
+    font-size: 1em;
+    vertical-align: middle;
+    text-align: start;
+}
+
+.contact .table-location .location-tbody td{
+    border-bottom: 1px inset #fff01f;
+    padding: 1em 0.5em;
+    font-size: 1em;
+    vertical-align: middle;
+    text-align: start;
+    width: 100%;
+
+}
+
+.contact .table-location .location-tbody .img{
+    border: none;
+}
+
+.contact .table-location .location-tbody .img img{
+    border: 2px inset #fff01f;
+    width: 20em
+
+}
+
+.contact .table-location .location-tbody th i{
+    font-size: 2em;
+    text-align: center;
+    padding-left: 1em;
+}
+
+.contact .table-location .location-tfoot td{
+    padding: 1em 0;
+} 
+
+.edit_del_location a {
+    text-decoration: none;
+    border: 1px outset #FFFDDE;
+    color: #6e6700;
+    background-color: #FFFDDE;
+    padding: .5em;
+    
+}
+
+.edit_del_location a:focus {
+    border: 1px inset #FFFDDE;
+}
+
+
+
+
+
+/* Footer ---------------------------------------------------- */
+.footer {
+    background-color: #D9D7F1;
+    color: #0e028d;
+    text-align: center;
+}
+
+.foot-user {
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #D9D7F1;
+
+}
+
+#footer-links{
+    margin: 0 auto;
+    margin-bottom: 1em;
+    font-size: 3em;
+    
+}
+
+.foot-user .links-table {
+    width: 100%;
+}
+
+
+.foot-user .links-table th{
+    padding: .5em;
+    font-size: 1.4em;
+    border-bottom:1px solid #3f2eff;
+}
+
+.foot-user .links-table td{
+    padding: .5em;
+    font-size: 1.4em;
+    border-bottom:1px solid #3f2eff;
+}
+
+
+.foot-user .links-table .edit_del_social a {
+    text-decoration: none;
+    border: 1px outset #D9D7F1;
+    color: #0e028d;
+    background-color: #D9D7F1;
+    padding: 0.5em 1em;
+    font-size: 1em;
+}
+
+.links-table .edit_del_social{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.links-table .edit_del_social a:focus {
+    border: 1px inset #D9D7F1;
+}
+
+/* arrow go up ----------------------------------------------------------- */
+#up {
+    offset: 100px;
+    position: absolute;
+    right: 0.5em;
+    bottom: .5em;
+    color: #0e028d;
+    font-size: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 30px;
+
+}
+
+/* media queries ---------------------------------------------------------- */
+
+@media (max-width:1440px) {
+
+    .header .message{
+        font-size: .9em;
+    }
+    .courses .course-card {
+        min-width: 40vw;
+    }
+
+    .teachers .teacher-card {
+        min-width: 40vw;
+    }
+
+    .gallery figure img {
+        width: 15em;
+    }
+
+    .contact .contact-card{
+        min-width: 60vw;
+    }
+}
+
+@media (max-width:1200px) {
+    .header .message{
+        font-size: .7em;
+    }
+    .contact .contact-card{
+        min-width: 70vw;
+    }
+
+    .gallery figure {
+        padding: .2em;
+    }
+
+    .gallery figure img {
+        width: 13em;
+    }
+
+    .contact-msg form {
+        min-width: 60vw;
+
+    }
+}
+
+@media (min-width:1024px){
+    .contact .table-location .location-tbody .md{
+        display: none;
+    }
+}
+
+@media (max-width:1024px) {
+    .header .message{
+        font-size: .7em;
+        width: 60%;
+    }
+    .courses .course-card {
+        min-width: 50vw;
+    }
+
+    .teachers .teacher-card {
+        min-width: 50vw;
+    }
+
+    .gallery figure img {
+        width: 11em;
+    }
+
+    .gallery figure figcaption {
+        font-size: .9em;
+    }
+
+    .contact .contact-card {
+        min-width: 70vw;
+        padding: 0.5em;
+    }
+
+
+
+    .contact .table-location .location-tbody .lg{
+        display: none;
+    }
+    
+    .contact .table-location .location-tbody .img{
+        border: none;
+        text-align: center;
+    }
+    
+}
+
+@media (max-width:768px) {
+    .header .message{
+        font-size: .7em;
+        width: 60%;
+    }
+    /* header menu--------- */
+    .header {
+        font-size: 1.5em;
+    }
+
+    .header ul li a {
+        font-size: 1.4em;
+        line-height: 1.5em;
+    }
+
+    .bg-image1 h1 {
+        font-size: 2em;
+        margin: 1em 0;
+    
+    }
+    
+    .bg-image1 a {
+        text-decoration: none;
+        font-size: 1.5em;
+    }
+    .courses .course-card {
+        min-width: 70vw;
+    }
+    .course-card .card .course-table thead th i{
+        font-size: 4em;
+    }
+
+    .course-card .card .course-table .course-tbody th{
+        font-size: 1em;
+    }
+    .course-card .card .course-table .course-tbody td{
+        font-size: 1em;
+    
+    }
+    
+    .course-card .card .course-table .course-tbody th i{
+        font-size: 1.5em;
+        padding: 0;
+    }
+    
+    
+    .course-card .card .course-tfoot th h3{
+        padding-top: .2em;
+        font-size: 1.4em;
+    }
+    
+
+    .teachers .teacher-card {
+        min-width: 70vw;
+    }
+
+    .teacher-card .card .table-teacher{
+        text-align: center;
+        margin: auto;
+        border-collapse: collapse;
+        margin: 0;
+    }
+     
+    .teacher-card .card .table-teacher thead th{
+        border: none;
+        font-size: 1.5em;
+        padding-bottom: 1em;
+        padding-top: 1em;
+    }
+
+    
+    
+    .teacher-card .card .table-teacher .teacher-tbody th{
+        font-size: 1em;
+    }
+    
+    .teacher-card .card .table-teacher .teacher-tbody td{
+        font-size: 1em;
+    
+    }
+    
+    
+    .teacher-card .card .table-teacher .teacher-tbody th i{
+        font-size: 1.5em;
+        padding-left: 0;
+    }
+    
+    
+    .gallery figure img {
+        width: 9em;
+    }
+
+    .gallery figure figcaption {
+        display: none;
+    }
+    .modal-content {
+        width: 100%;
+    }
+
+    .contact .contact-card {
+        min-width: 80vw;
+        padding: 0.5em;
+        font-size: 1em;
+    }    
+
+    
+    .contact .table-location .location-tbody .img img{
+        width: 15em;
+    
+    }
+    
+    .contact .table-location .location-tbody th i{
+        font-size: 1.5em;
+        padding-left: 0;
+    }
+    
+
+
+
+    /* footer ---------------------------- */
+
+    .foot-user{
+        padding: .5em;
+    }
+    .foot-user #footer-links{
+        font-size: 2em;
+    }
+    .foot-user .links-table .links-tbody td{
+        font-size: 1em;
+    }
+
+    .foot-user .links-table .links-tbody th{
+        font-size: 1em;
+    }
+
+    .edit_del_social a{
+        font-size: 1em;
+    }
+}
+
+@media (max-width:576px) {
+    .header .message{
+        font-size: .7em;
+        width: 90%;
+    }
+    /* header menu--------- */
+    .header {
+        font-size: 1.5em;
+    }
+
+    .header ul li a {
+        font-size: 1.3em;
+        line-height: 1.5em;
+    }
+
+    .courses .course-card {
+        min-width: 80vw;
+    }
+
+    .teachers .teacher-card {
+        min-width: 80vw;
+    }
+
+    .contact .contact-card {
+        min-width: 90vw;
+        padding: 0.5em;
+        font-size: 1em;
+    }
+
+
+}
+
+@media (max-width:480px) {
+
+    /* header menu--------- */
+    .header {
+        font-size: 24px;
+    }
+
+    .header ul li a {
+        font-size: 24px;
+        line-height: 40px;
+        letter-spacing: 5px;
+    }
+
+    /* courses -------- */
+
+    .courses .course-card {
+        min-width: 90vw;
+    }
+
+    .course-card .card {
+        padding: 1%;
+    }
+
+
+    /* teachers ---------------------------- */
+
+
+    .teachers .teacher-card {
+        min-width: 90vw;
+
+    }
+
+
+    .teacher-card .card {
+        padding: 1%;
+    }
+
+    
+
+    /* gallery */
+    
+    .modal-content {
+        width: 100%;
+    }
+
+    /* contact ------------------------- */
+
+
+    .contact .contact-card {
+        min-width: 90vw;
+        padding: 0.5em;
+    }
+
+    .contact .contact-card .table-location{
+        margin: 0;
+    }
+    /* Form ------------------------------------------------------- */
+
+
+    /* footer ---------------------------- */
+
+
+}

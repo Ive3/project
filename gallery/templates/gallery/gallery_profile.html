@@ -1,0 +1,66 @@
+{% extends 'base_gallery/base_gallery.html' %}
+{% load static %}
+
+{% block title %}Gallery::{{ request.user.username }}'s pictures{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/gallery_cards.css' %}">
+{% endblock css %}
+
+
+
+{% block content %}
+
+<section>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="message">
+        {{ message }}
+        <span class="closebtn"
+            onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    {% endfor %}
+    {% endif %}
+    
+    <h5 class="username">
+        User: {{ user.username }}
+        <br>
+        pictures: {{ pictures|length }}
+    </h5>
+
+    <form action="" method="get" class="btns-d">
+        <input name="2d" type="submit" value="2D" class="btn-d">
+        <input name="3d" type="submit" value="3D" class="btn-d">
+        <input name="" type="submit" value="all" class="btn-d">
+    </form>
+
+
+    <div class="cards">
+
+        {% if pictures %}
+        {% for picture in pictures %}
+        <a href="{% url 'gallery:detail_author_gallery' picture.pk %}">
+            <figure class="card">
+                <img src="{{ picture.image.url }}" alt="">
+                <figcaption>
+                    {{ picture.name }}
+                </figcaption>
+            </figure>
+        </a>
+        {% endfor %}
+
+        
+
+        {% else %}
+        <h1>Empty</h1>
+        {% endif %}
+
+    </div>
+
+    {% include 'gallery/paginator.html' %}
+
+
+</section>
+
+{% endblock content %}

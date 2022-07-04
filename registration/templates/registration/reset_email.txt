@@ -1,0 +1,13 @@
+{% autoescape off %}
+
+Dear {{ user.username }}
+
+You sent request to reset password
+Clik to link below to reset password
+
+{{ protocol }}://{{ domain }}{% url 'registration:reset_password_confirm' uidb64=uid token=token %}
+
+Bey!
+Will not forget you password!)
+
+{% endautoescape %}

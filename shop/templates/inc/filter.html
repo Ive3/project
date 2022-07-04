@@ -1,0 +1,28 @@
+<div class="col-lg-3 border-end mb-3">
+    <h5 class="fs-3">Filter</h5>
+    <aside><small>Choose only one filter</small></aside>
+
+    <form action="{% url 'shop:filter_product' %}" method="get" class="fs-5">
+        <div class="form-check my-3">
+            <label for="high_p" class="form-check-label">High price</label>
+            <input type="checkbox" name="high_price" id="high_p" class="form-check-input">
+        </div>
+
+        <div class="form-check my-3">
+            <label for="low_p" class="form-check-label">Low price</label>
+            <input type="checkbox" name="low_price" id="low_p" class="form-check-input">
+        </div>
+
+        <div class="form-check my-3">
+            <label for="new_p" class="form-check-label">New product</label>
+            <input type="checkbox" name="new" id="new_p" class="form-check-input" checked>
+        </div>
+
+        <div class="form-check my-3">
+            <label for="viewed_p" class="form-check-label">Viewed</label>
+            <input type="checkbox" name="viewed" id="viewed_p" class="form-check-input">
+        </div>
+        <input type="submit" value="filter" class="btn btn-primary w-100">
+
+    </form>
+</div>

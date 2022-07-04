@@ -1,0 +1,63 @@
+{% extends 'layout/basic.html' %}
+
+
+{% block title %}Shop::Categories {% endblock title %}
+
+
+{% block content %}
+
+<!-- main section --------------------------------------- -->
+
+<section class="container pb-5">
+
+{% if cats and categories %}
+    <div class="row mt-3">
+        <h3 class="mb-5 pb-3 border-bottom">Categories</h3>
+
+        <div class="col-lg-4">
+            {% for c in cats %}
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                onchange="location = this.value;">
+                <option disabled selected value="{% url 'shop:sub_categories' c.pk %}"> {{ c.name }}
+                </option>
+                <option class="h3" value="{% url 'shop:sub_categories' c.pk %}"> {{ c.name }}
+                </option>
+                {% for category in categories %}
+                {% if category.sup_category.pk == c.pk %}
+                <option value="{% url 'shop:by_category' category.pk %}">{{ category.name }}
+                </option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            {% endfor %}
+        </div>
+
+        <div class="col-lg-8 ">
+            <div class="row">
+                {% for cat in cats %}
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3 text-center">
+                    <a href="{% url 'shop:sub_categories' pk=cat.pk %}" class="">
+                        <img src="{{ cat.image.url }}" alt="" class="img-thumbnail rounded-circle">
+                    </a>
+                    <a href="{% url 'shop:sub_categories' pk=cat.pk %}" class="">
+                        <h5 class="">
+                            {{ cat.name }}
+                        </h5>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+
+
+    {% else %}
+    <h3 class="text-center text-secondary">Empty</h3>
+    {% endif %}
+</section>
+<!-- end main section --------------------------------------- -->
+
+{% endblock content %}

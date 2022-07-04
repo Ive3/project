@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #f5ffe1;
+}
+
+.navbar{
+    background-color: #E7FBBE;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 2em 0;
+    border-bottom: 1px outset #FFFDDE;
+}
+
+.navbar .nav-link{
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #5d8b00;
+    border: 1px outset #E7FBBE;
+    padding: 0.5em 1em;
+    display: block;
+}
+
+.navbar .nav-link:hover{
+    background-color: #d0fc7a;
+    border: 1px inset #E7FBBE;
+
+}
+
+.contact-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1em;
+}
+
+.contact-msg h1{
+    margin: 1em 0 0 0;
+    color: #5d8b00;
+}
+
+.contact-msg .cart p{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 1px outset #f6ffe5;
+    background-color: #E7FBBE;
+    padding: 1em;
+    font-weight: lighter;
+    margin-bottom: 1em;
+    box-shadow: 0 5px 5px #5d8b00;
+}
+.contact-msg .cart p span:first-child{
+    margin: 0 ;
+    
+}
+.contact-msg .cart p span{
+    margin: 0 1em;
+    
+}
+
+.contact-msg .cart p span:last-child{
+    margin: 0 ;
+    
+}
+.contact-msg .cart p strong{
+    margin-right: 0.2em;
+}
+
+
+/* Media --------------------------------- */
+
+@media (max-width:1200px){
+    .contact-msg .cart p{
+        font-size: .8em;
+    }
+      
+}
+
+@media (max-width:1024px){
+    .contact-msg .cart p{
+        font-size: .7em;
+    }
+      
+}
+
+@media (max-width:800px){
+    .contact-msg .cart p{
+        font-size: .9em;
+        flex-direction: column;
+    }
+    .contact-msg .cart p span{
+        margin: 0;
+    }
+}

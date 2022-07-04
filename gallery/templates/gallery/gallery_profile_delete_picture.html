@@ -1,0 +1,49 @@
+
+{% extends 'base_gallery/base_gallery.html' %}
+{% load static %}
+{% block title %}Gallery::Delete picture{% endblock title %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/gallery_detail.css' %}">
+{% endblock css %}
+{% block content %}
+
+        <section>
+            <div class="detail" >
+                <form class="action" action="" method="post">
+                    {% csrf_token %}
+                    <input class="do" type="submit" value="delete">
+                </form>
+                <div class="card" style="border:none ;">
+
+                    <h1 class="title-card">{{ picture.name }}</h1>
+                    <img src="{{ picture.image.url }}" alt="" id="i">
+                    <div class="info">
+                        <p>{{ picture.description|safe }}</p>
+                    </div>
+
+                    <div class="foot">
+                        <div class="tags">
+                            {% for tag in picture.tags.all %}
+                            <a class="tag" href="{% url 'gallery:by_tags' tag.pk %}">{{ tag.name}}</a>
+                            {% endfor %}
+                        </div>
+                        <div class="d-v">
+
+                            <a href="{{ picture.image.url }}" class="download" name="d" download>
+                                Download ({{ picture.image.size|filesizeformat}})
+                            </a>
+
+                            <span class="views"> views: {{ picture.views }}</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+           
+        </section>
+
+        {% endblock content %}

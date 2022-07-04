@@ -1,0 +1,31 @@
+{% extends 'layout/basic.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Shop::Update product {% endblock title %}
+
+{% block content %}
+<style>
+    form a {
+        font-size: .8em;
+    }
+</style>
+<div class="container">
+
+    <form action="" method="post" class="mt-3 p-3 shadow" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        
+        <h5>Extra images</h5>
+
+        {% bootstrap_formset formset layout='horizontal' %}
+
+    	{% buttons submit='Save' %}{% endbuttons %}
+
+    </form>
+
+</div>
+
+
+
+{% endblock content %}

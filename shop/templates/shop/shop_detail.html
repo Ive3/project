@@ -1,0 +1,166 @@
+{% extends 'layout/basic.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Shop::Product:{{ product.name }} {% endblock title %}
+
+
+{% block content %}
+<!-- main section --------------------------------------- -->
+
+<section class="container pb-5">
+    <div class="row align-items-center mt-3 mx-2">
+        <img src="{{ product.thumbnail.url }}" alt="" class="img-thumbnail col-lg-2" width="100px">
+        <h3 class="my-3 display-4 d-inline-block col-lg-10">{{ product.name }}</h3>
+    </div>
+    <div class="row mt-3 mx-1">
+        
+        <!-- Carousel --------------------------------------------- -->
+        <div class="col-lg-6 border p-3 rounded-3">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for ei in eis %}
+                    <div class="carousel-item active">
+                        <img src="{{ ei.image.url }}" class="d-block w-100 img-fluid" alt="...">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <!-- end carousel --------------------------------------------- -->
+
+        <div class="col-lg-6 border rounded-3">
+            <div class="row ps-3 pe-3">
+                <div class="col-lg-12">
+                    <h1 class="mt-5 display-5">{{ product.name }}</h1>
+                    <h3 class=" display-6 fs-3">price: {{ product.price }} $</h3>
+
+                    <form action="{% url 'shop:add_cart' product.id %}" method="post" class="row my-3">
+                        {% csrf_token %}
+
+                        <label for="{{ cart_form.quantity.id_for_label }}" class="col-lg-2 col-form-label">{{ cart_form.quantity.label }}</label>
+
+                        <div class="col-lg-6 p-0 mb-3 me-2">
+
+                            {{ cart_form.quantity }}
+                            {{ cart_form.update }}
+                        </div>
+
+                        <input type="submit" class="btn btn-primary col-lg-3 mb-3" value="Add to cart">
+                    </form>
+                    <hr class="border-primary">
+                    <div class="display-6 fs-5">
+                        <aside>Added: {{ product.created_at }}</aside>
+                        <hr class="border-primary">
+                        <aside>Category: <a href="{% url 'shop:by_category' product.category.pk %}">{{ product.category }}</a></aside>
+                        <hr class="border-primary">
+                        <aside>Author: {{ product.author }}</aside>
+                        <hr class="border-primary">
+                    </div>
+
+
+                    
+                    <aside class="mb-3"><i class="bi bi-eye"></i> {{ product.views }}</aside>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mx-1">
+        <div class="card p-0">
+            <div class="card-header">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#home">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#menu1">About</a>
+                    </li>
+                
+                </ul>
+            </div>
+            <card class="body mt-2">
+
+
+                <!-- Tab panes -->
+                <div class="tab-content mb-3">
+                    <div id="home" class="container tab-pane active overflow-auto ">
+                        <br>
+                        {{ product.description|safe }}
+                    </div>
+                    <div id="menu1" class="container tab-pane fade overflow-auto">
+                        <br>
+                        {{ product.info|safe }}
+                    </div>
+                    
+                </div>
+            </card>
+        </div>
+    </div>
+
+    <div class="row mt-5 border-top pt-3">
+        <h3 class="">All author's products
+            <a href="{% url 'shop:author_product' product.author.pk %}">see all</a>
+        </h3>
+
+        
+
+        {% for author_product in author_products %}
+        <div class="col-lg-2 col-md-4 col-sm-6 mt-3">
+            <div class="card">
+                <img src="{{ author_product.thumbnail.url }}" alt="" class="img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ author_product.name }}
+                    </h5>
+                    <aside>{{ author_product.price }}$</aside>
+                    <a href="{{ author_product.get_absolute_url }}" class="stretched-link">Watch</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="row mt-5 border-top pt-3">
+        <h3 class="">The same products
+            <form action="{% url 'shop:search' %}" class="d-inline-block">
+                <input type="hidden" class="form-control me-3" name="search" value="{{p}}">
+                <input class="border-0 bg-light text-primary" type="submit" value="See all"></input>
+            </form>
+        </h3>
+
+        
+
+        {% for same_product in same_products %}
+        <div class="col-lg-2 col-md-4 col-sm-6 mt-3">
+            <div class="card">
+                <img src="{{ same_product.thumbnail.url }}" alt="" class="img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ same_product.name }}
+                    </h5>
+                    <aside>{{ same_product.price }}$</aside>
+                    <a href="{{ same_product.get_absolute_url }}" class="stretched-link">Watch</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+
+</section>
+<!-- end main section --------------------------------------- -->
+{% endblock content %}

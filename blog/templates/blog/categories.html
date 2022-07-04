@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %} Blog::Categories {% endblock title %}
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/categories.css' %}">
+{% endblock csslink %}
+
+
+{% block content %}
+<h2>Categories</h2>
+{% if categories %}
+
+<div class="posts">
+    {% for cat in categories %}
+    <div class="post">
+        <a href="{% url 'blog:by_category' cat.slug %}" class="aimg"><img src="{% thumbnail cat.image 'cat_img' %}" alt="image"></a>
+        <a href="{% url 'blog:by_category' cat.slug %}" class="readmore">{{ cat.name }}</a>
+    </div>
+    {% endfor %}
+ 
+</div>
+{% else %}
+<h2>There are no categories</h2>
+{% endif %}
+{% endblock content %}

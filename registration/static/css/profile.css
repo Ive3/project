@@ -1,0 +1,189 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url('../bg/inspiration-geometry.png');
+
+}
+
+
+/* Wrapper ------------------------------------------------------------- */
+.wrapper {
+    width: 60vw;
+    min-height: 80vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    justify-content: space-evenly;
+    padding: 1em 30px;
+}
+
+/* Header ------------------------------------------------------------- */
+header {
+    border: 2px ridge #f1f1f1;
+    text-align: center;
+    background-color: #fff;
+    color: #000;
+    margin-top: .5em;
+}
+
+/* Section ------------------------------------------------------------- */
+
+section {
+    border: 2px ridge #f1f1f1;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0;
+}
+
+.row{
+    border: 2px ridge #f1f1f1;
+    background-color: #fff;
+    margin: 1em;
+
+}
+
+.action{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-evenly;
+    padding: 1em 0;
+}
+
+
+.link{
+    text-decoration: none;
+    color: #000;
+    display: block;
+    border: 1px solid;
+    padding: .5em;
+    font-size: 1.5em;
+    background-color: #fff;
+    border-color: #f1f1f1;
+    box-shadow: 0 10px #e1e1e1;
+    border-width: 3px;
+    border-style: ridge;
+    text-align: center;
+    font-style: normal;
+    transition-duration: .0s;
+}
+
+
+
+.link:hover {
+    background-color: #f1f1f1;
+    color: #000;
+    border-color: #e1e1e1;
+    transform: translateY(5px);
+    box-shadow: 0 5px #1b1b1b;
+    transition-delay: 0.0s;
+    transition-duration: .2s;
+    transition-property: transform, box-shadow, background-color, color, border-color;
+    transition-timing-function: ease;
+}
+
+.link:active {
+    color: #fff;
+    background-color: #000;
+}
+
+.message{
+    border: 2px ridge #e1e1e1;
+    padding: 1em;
+    margin: 1em;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4em;
+}
+.closebtn{
+    cursor: pointer;
+}
+
+.info {
+    overflow: auto;
+
+}
+
+.info table{
+    border: 2px ridge #e1e1e1;
+    font-size: 1.2em;
+    border-collapse: collapse; 
+    margin: 1em;
+    overflow: auto;
+
+}
+.info table caption{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.info table th, td{
+    border: 1px ridge #e1e1e1;
+    font-size: 1.2em;
+    text-align: start;
+    padding: 1em;
+
+
+}
+.info table td{
+    width: 100%;
+
+}
+
+
+
+
+
+
+/* Media -------------------------------------------------------------- */
+@media (max-width:1200px){
+    .wrapper {
+        width: 75vw;
+    }
+}
+@media (max-width:992px) {
+    .wrapper {
+        width: 90vw;
+    }
+
+
+}
+
+@media (max-width:768px) {
+    .action{
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        justify-content: space-evenly;
+        padding: 1em 0;
+        margin: 0;
+    }
+
+    
+    .link{
+        font-size: 1.5em;
+        margin: .5em;
+    }
+}
+
+@media (max-width:480px) {
+
+    .wrapper {
+        width: 95vw;
+        padding: 0;
+    }
+    .row{
+        
+        margin: .5em;
+    
+    }
+
+    .info table{
+        margin: .5em;
+    
+    }
+}

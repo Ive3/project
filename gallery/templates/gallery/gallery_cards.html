@@ -1,0 +1,35 @@
+{% extends 'base_gallery/base_gallery.html' %}
+{% load static %}
+
+{% block title %}Gallery::{% if keyword %}Search:{{keyword}}{%else%}Pictures{% endif %}{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/gallery_cards.css' %}">
+{% endblock css %}
+
+{% block content %}
+<section>
+    <div class="cards">
+
+        {% if pictures %}
+        {% for picture in pictures %}
+        {% ifchanged %}
+        <a href="{% url 'gallery:gallery_detail' picture.pk %}">
+            <figure class="card">
+                <img src="{{ picture.image.url }}" alt="" width="300px">
+                <figcaption>
+                    {{ picture.name }}
+                </figcaption>
+            </figure>
+        </a>
+        {% endifchanged %}
+
+        {% endfor %}
+        {% else %}
+        <h1>Empty</h1>
+        {% endif %}
+    </div>
+
+    {% include 'gallery/paginator.html' %}
+</section>
+{% endblock content %}

@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url('../bg/inspiration-geometry.png');
+    background-repeat: repeat;
+
+}
+
+
+/* Wrapper ------------------------------------------------------------- */
+.wrapper {
+    width: 60vw;
+    min-height: 70vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    justify-content: space-evenly;
+    padding: 1em 0;
+}
+
+/* Header ------------------------------------------------------------- */
+header {
+    border: 2px ridge #f1f1f1;
+    text-align: center;
+    background-color: #fff;
+    color: #000;
+
+}
+
+/* Section ------------------------------------------------------------- */
+
+section {
+    border: 2px ridge #f1f1f1;
+    background-color: #fff;
+    margin: .5em 0;
+
+}
+
+/* Links ------------------------------------------------------------- */
+
+.links {
+    min-height: 75vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    margin: 0.3em;
+    padding-bottom: 1em;
+}
+
+.links a {
+    color: #000;
+    background-color: #fff;
+    border-color: #f1f1f1;
+    box-shadow: 0 20px #e1e1e1;
+    text-decoration: none;
+    border-width: 3px;
+    border-style: ridge;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+    font-style: normal;
+    transition-duration: .0s;
+    font-size: 2em;
+
+}
+
+
+
+.links a:hover {
+    background-color: #f1f1f1;
+    color: #000;
+    border-color: #e1e1e1;
+    transform: translateY(10px);
+    box-shadow: 0 5px #1b1b1b;
+    transition-delay: 0.0s;
+    transition-duration: .2s;
+    transition-property: transform, box-shadow, background-color, color, border-color;
+    transition-timing-function: ease;
+}
+
+.links a:active {
+    color: #fff;
+    background-color: #000;
+}
+
+
+
+/* Footer ------------------------------------------------------------- */
+footer {
+    border: 2px ridge #f1f1f1;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    padding: 1.7em;
+}
+
+
+/* Media -------------------------------------------------------------- */
+@media (max-width:1200px) {
+    .wrapper {
+        width: 75vw;
+    }
+}
+@media (max-width:992px) {
+    .wrapper {
+        width: 90vw;
+    }
+}
+
+@media (max-width:768px) {
+    .links a {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width:480px) {
+    header{
+    margin-top: .5em;
+
+    }
+    .wrapper {
+        width: 95vw;
+        padding: 0;
+    }
+
+    .links {
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .links a {
+        margin-bottom: 1em;
+    }
+    footer {
+        font-size: .8em;
+    margin-bottom: .5em;
+
+    }
+}

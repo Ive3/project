@@ -1,0 +1,20 @@
+{% extends 'base_gallery/base_gallery.html' %}
+{% load static %}
+
+{% block title %}Gallery::Update picture:{{ picture.name }}{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/gallery_add.css' %}">
+{% endblock css %}
+{% block content %}
+<section>
+    <form class="add-form" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form }}
+        <input type="submit" value="Save">
+    </form>
+</section>
+
+{% endblock content %}
+

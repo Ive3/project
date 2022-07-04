@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course::Journal and messages</title>
+    <link rel="stylesheet" href="{% static 'css/landingpage_edit.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+<body>
+    <div class="container">
+        <section class="navbar">
+            <ul class="nav">
+                <li class="nav-item"><a href="{% url 'landingpage:allview'%}#menu" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:journal' %}" class="nav-link">Journal</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:contact_msg' %}" class="nav-link">Messages</a></li>
+                <li class="nav-item"><a href="{% url 'landingpage:sign_msg' %}" class="nav-link">Course messages</a></li>
+            </ul>
+        </section>
+    </div>
+    
+</body>
+</html>

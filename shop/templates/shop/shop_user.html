@@ -1,0 +1,66 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %} Shop::{{request.user.username}}'s products{% endblock title %}
+
+{% block content %}
+
+<!-- main section --------------------------------------- -->
+
+<section class="container pb-5">
+    
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="alert {{ message.tags }} mt-3 alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="row mt-3">
+        <h3 class="mb-5 pb-3 border-bottom">{{ user.username }}'s products</h3>
+
+
+        <div class="col-lg-12">
+            {% if products %}
+            <div class="row">
+
+                {% for product in products %}
+                <div class="col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="{{ product.thumbnail.url }}" alt="" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ product.name }}
+                            </h5>
+                            <aside>{{ product.price }} $</aside>
+                            <a href="{% url 'shop:user_detail_product' product.pk %}" class="stretched-link">Watch
+                                <i class="bi bi-eye"></i> {{ product.views }}
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+            {% include 'inc/paginator.html' %}
+
+
+            {% else %}
+            <h3 class="text-center text-secondary">Empty</h3>
+            {% endif %}
+        </div>
+
+
+    </div>
+
+
+
+</section>
+<!-- end main section --------------------------------------- -->
+
+{% endblock content %}

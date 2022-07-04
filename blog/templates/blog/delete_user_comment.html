@@ -1,0 +1,31 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %} Blog::Delete comment {% endblock title %}
+
+
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+<h2>Delete comment from post "{{ comment.post }}"</h2>
+
+<div class="comments">
+    <h2>Comment</h2>
+    <div class="com">
+        <aside>{{ comment.name }} | {{ comment.created }}
+        </aside>
+        <div class="comment-text">{{ comment.text|safe }}</div>
+
+    </div>
+
+    <form action="{% url 'blog:delete_comment' comment.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="delete">
+    </form>
+    <a href="{% url 'blog:user_detail_post' comment.post.slug %}" class="readmore">back</a>
+
+</div>
+{% endblock content %}

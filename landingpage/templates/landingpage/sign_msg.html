@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course::C Messages</title>
+    <link rel="stylesheet" href="{% static 'css/landingpage_course_msg.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="container">
+
+        <section>
+            <ul class="navbar">
+                <li class="nav-item"><a href="{% url 'landingpage:allview' %}"
+                        class="nav-link">Home</a></li>
+                <li class="nav-item"><a {% if user.is_authenticated %}
+                        href="{% url 'landingpage:user_edit' user.pk %}" {% else %}
+                        href="{% url 'landingpage:edit' %}" {% endif %} class="nav-link">Edit</a>
+                </li>
+            </ul>
+        </section>
+        <section class="contact-msg">
+            <h1>Messages<h1>
+                    {% if msgs %}
+                    {% for m in msgs %}
+                    <div class="cart">
+                        <p>
+                            <span><strong>Name:</strong>{{ m.name }}</span>
+                            <span><strong>Phone:</strong>{{ m.phone }}</span>
+                            <span><strong>Level:</strong>{{ m.level }}</span>
+                            <span><strong>Course:</strong>{{ m.course }}</span>
+                            <span><strong>Sent:</strong>{{ m.sent }}</span>
+                        </p>
+
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <h1>Empty</h1>
+                    {% endif %}
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %} Blog::Post:{{ post.title }} {% endblock title %}
+
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="message">
+    {{ message }}
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+</div>
+{% endfor %}
+{% endif %}
+
+<h2>Detail view</h2>
+<div class="posts">
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+
+
+        <img class="thumbnail" src="{{ post.thumbnail.url }}" alt="image">
+        <div class="paragraph">{{ post.text|safe }}</div>
+
+        {% if eis %}
+        <h2>images</h2>
+        <div class="images">
+            {% for ei in eis %}
+            <img src="{{ ei.image.url }}" alt="image">
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if post.video %}
+        <h2>video</h2>
+        <video controls>
+            <source type="video/mp4" src="{{ post.video.url }}">
+        </video>
+        {% endif %}
+
+        <aside>Author: {{ post.author }}</aside>
+        <aside>Category: {{ post.category }}</aside>
+        <aside>views: {{post.views}} &#128065;</aside>
+        <aside>added: {{ post.created }}</aside>
+        <aside>changed: {{ post.changed }}</aside>
+
+        <form class="likes" action="{% url 'blog:like_post' post.slug %}" method="post">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+            {% if liked %}
+            <input class="unlike" type="submit" value="UnLike">
+            {% else %}
+            <input class="like" type="submit" value="Like">
+            {% endif %}
+            {% else %}
+            <a href="{% url 'registration:login' %}">Login to like</a>
+            {% endif %}
+            <aside>{{ total_likes }} likes</aside>
+
+        </form>
+        <a href="{% if keyword %}{% url 'blog:search_list' %}{{ all }}{% else %}{% url 'blog:by_category' post.category.slug %}{{ all }}{% endif %}" class="readmore">back</a>
+    </div>
+</div>
+<div class="comments">
+    <h2>Comments</h2>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form }}
+        <input type="submit" value="Add comment">
+    </form>
+    {% for comment in comments %}
+    <div class="com">
+        <aside>{{ comment.name }} | {{ comment.created }}</aside>
+        <div class="comment-text">{{ comment.text|safe }}</div>
+    </div>
+    {% endfor %}
+
+
+</div>
+{% endblock content %}

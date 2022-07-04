@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio::Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>User page</h1>
+        </header>
+
+        <section>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                {{ message }}
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="row">
+                
+                <ul class="action">
+                    <li class="item"><a href="{% url 'mainapp:index' %}" class="link">Home</a></li>
+                    <li class="item"><a href="{% url 'registration:change_password' %}" class="link">Change password</a></li>
+                    <li class="item"><a href="{% url 'registration:change_info' user.pk %}" class="link">Change info</a></li>
+                    <li class="item"><a href="{% url 'registration:delete_user' %}" class="link">Delete profile</a></li>
+                </ul>
+            </div>
+
+            
+
+            <div class="row">
+                <div class="info">
+                        <table>
+                            <caption>Info</caption>
+                            <tbody>
+                                <tr>
+                                    <th>Username</th>
+                                    <td>{{ profile.user.username }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>
+                                        {{ profile.user.email }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <td>{{ profile.user.first_name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surname</th>
+                                    <td>{{ profile.user.last_name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Birthday</th>
+                                    <td>{{ profile.birth }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Age</th>
+                                    <td>{{ profile.age }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Gender</th>
+                                    <td>{{ profile.get_gender_display }}</td>
+                                </tr>
+                                <tr>
+                                    <th>About you</th>
+                                    <td>{{ profile.info|safe }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                </div>
+            </div>
+        </section>
+    
+        
+    </div>
+</body>
+</html>

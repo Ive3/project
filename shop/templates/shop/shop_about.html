@@ -1,0 +1,42 @@
+{% extends 'layout/basic.html'%}
+
+
+{% block title %} Shop::About{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+    {% if contact %}
+    <h1 class="text-center mt-3">{{ about.name }}</h1>
+    <img src="{{ about.banner.url }}" alt="" class="img-fluid img-thumbnail mt-3 mb-3">
+    <div class="card">
+        <h3 class="card-title m-3 mb-0">
+            Description
+            <hr class="text-primary mb-0">
+        </h3>
+
+        <div class="card-body pt-0 overflow-auto">
+            <p>{{ about.description|safe }}</p>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <address class="m-3">
+            <h3>Address</h3>
+            <hr class="text-primary">
+
+            <aside><span class="text-secondary fs-5">address 1:</span> {{ about.address1 }}</aside>
+            <hr class="text-primary">
+
+            <aside><span class="text-secondary fs-5">address 2:</span> {{ about.address2 }}</aside>
+            <hr class="text-primary">
+
+            <aside><span class="text-secondary fs-5">Phone:</span> {{ about.phone }}</aside>
+        </address>
+    </div>
+    {% else %}
+    <h3 class="text-center text-secondary">Empty</h3>
+    {% endif %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+<header>
+    <a href="#n" class="btn-menu">navbar</a>
+    
+    <div class="navbar" id="n">
+        <a href="" class="btn-close">close</a>
+        
+        <ul class="nav">
+            <li class="nav-item"><a href="{% url 'mainapp:index' %}" class="nav-link">Main page</a>
+            </li>
+            <li class="nav-item"><a href="{% url 'gallery:main_page' %}"
+                    class="nav-link">Gallery</a>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a href="{% url 'gallery:add_picture' %}" class="nav-link">Add picture</a>
+            </li>
+            <li class="nav-item"><a href="{% url 'gallery:author_gallery' user.pk %}"
+                    class="nav-link">Your
+                    pictures</a></li>
+            {% else %}
+            <li class="nav-item"><a href="{% url 'mainapp:index' %}" class="nav-link">Login or sign
+                    in
+                    to add picture</a></li>
+            {% endif %}
+            <li class="nav-item">
+                <form action="{% url 'gallery:search' %}" method="get">
+                    <input type="search" name="search" id="" placeholder="name of pic or tag">
+                    <input type="submit" value="Search">
+                </form>
+
+            </li>
+        </ul>
+    </div>
+
+
+</header>
+

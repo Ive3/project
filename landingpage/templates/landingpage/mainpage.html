@@ -1,0 +1,322 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course</title>
+    <link rel="stylesheet" href="{% static 'css/landingpage.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="container">
+        <section class="bg-image1">
+            <div>
+                <h1>Courses</h1>
+                <a href="#menu">Menu</a>
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                    <span class="closebtn"
+                        onclick="this.parentElement.style.display='none';">&times;</span>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+        </section>
+
+        <section class="header" id="header">
+
+
+            <h1 id="menu">Menu</h1>
+            <ul>
+                <li><a href="{% url 'mainapp:index' %}">Main page</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#teachers">Teachers</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url 'landingpage:edit' %}">Journal/messages</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'landingpage:user_page' user.pk %}">Your page</a></li>
+                {% else %}
+                <li><a href="{% url 'mainapp:index' %}">Login or registration to add</a></li>
+                {% endif %}
+            </ul>
+        </section>
+
+        <section class="bg-image2">
+        </section>
+
+        <section class="courses" id="courses">
+            {% if courses %}
+            {% for course in courses %}
+            <div class="course-card">
+                <div class="card">
+                    <table class="course-table">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    {{ course.image.icon|safe }}
+                                </th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="3">
+                                    {{ course.name }}
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="course-tbody">
+                            <tr>
+                                <th><i class="bi bi-flag"></i></i></th>
+                                <th>Who can:</th>
+                                <td>{{ course.who_can }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-clock-history"></i></th>
+                                <th>Countinue:</th>
+                                <td>{{ course.countinue }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-bar-chart-line-fill"></i></th>
+                                <th>Level:</th>
+                                <td>{{ course.level }}</td>
+                            </tr>
+                        </tbody>
+
+                        <tfoot class="course-tfoot">
+                            <tr>
+                                <th colspan="3">
+                                    <h3>{{ course.price }}$</h3>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th colspan="3">
+                                    <a href="#course-modal" class="lesson">Записаться на курс</a>
+                                </th>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+                <!-- modal course -->
+                <div class="modal-course" id="course-modal">
+                    <form action="{% url 'landingpage:sign_course' %}" method="post">
+                        {% csrf_token %}
+                        <a href="#course">&times;</a>
+                        {{ sign_course_form }}
+                        <input type="submit" value="submit" class="modal-btn">
+                    </form>
+                </div>
+
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <h1 class="empty">Empty</h1>
+            {% endif %}
+
+        </section>
+
+        <section class="bg-image3">
+
+        </section>
+
+        <section class="teachers" id="teachers">
+            {% if teachers %}
+            {% for teacher in teachers %}
+            <div class="teacher-card">
+                <div class="card">
+
+                    <table class="table-teacher">
+                        <thead class="teacher-thead">
+                            <tr>
+                                <th colspan="3">
+                                    {% if teacher.image %}
+                                    <img src="{{ teacher.image.url }}" alt="">
+                                    {% endif %}
+                                </th>
+
+                            </tr>
+                            <tr>
+                                <th colspan="3">
+                                    {{ teacher.name }}
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="teacher-tbody">
+                            <tr>
+                                <th><i class="bi bi-clipboard2-data"></i></th>
+                                <th>Expirience:</th>
+                                <td>{{ teacher.expirience }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-bag-plus"></i></th>
+                                <th>Achievement:</th>
+                                <td>{{ teacher.achievement }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-boxes"></i></th>
+                                <th>Strong side:</th>
+                                <td>{{ teacher.strong_side }}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <h1 class="empty">Empty</h1>
+            {% endif %}
+        </section>
+
+        <section class="gallery" id="gallery">
+            {% if gallery %}
+
+            {% for g in gallery %}
+            <figure>
+                <!-- Trigger the Modal -->
+                <a href="#{{ g.id }}">
+                    <img id="myImg" src="{{ g.image.url }}" alt="">
+                </a>
+
+
+            </figure>
+
+            <!-- The Modal -->
+            <div id="{{ g.id }}" class="modal">
+
+                <!-- The Close Button -->
+                <a href="#" class="close">&times;</a>
+
+                <!-- Modal Content (The Image) -->
+                <img class="modal-content" id="{{ g.id }}" src="{{ g.image.url }}">
+
+                <!-- Modal Caption (Image Text) -->
+                <div id="caption">{{ g.description }}</div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <h1 class="empty">Empty</h1>
+            {% endif %}
+        </section>
+
+        <section class="contact" id="location">
+            {% if location %}
+            {% for address in location %}
+            <div class="contact-card">
+                <div class="card">
+
+                    <table class="table-location">
+                        <tbody class="location-tbody">
+                            <tr class="md">
+                                <th class="img" colspan="3">
+                                    {% if address.image %}
+                                    <img src="{{ address.image.url }}" alt="">
+                                    {% endif %}
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="img lg" colspan="3" rowspan="4">
+                                    {% if address.image %}
+                                    <img src="{{ address.image.url }}" alt="">
+                                    {% endif %}
+                                </th>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-geo-alt-fill"></i></th>
+                                <th> Street:</th>
+                                <td>{{ address.street }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-alt"></i></th>
+                                <th>Subway:</th>
+                                <td>{{ address.subway }}</td>
+                            </tr>
+                            <tr>
+                                <th><i class="bi bi-compass"></i></th>
+                                <th>address:</th>
+                                <td>{{ address.address }}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <h1 class="empty">Empty</h1>
+            {% endif %}
+        </section>
+
+        <section class="contact-msg" id="contact">
+            <div class="form-container">
+                <form action="{% url 'landingpage:msg_save' %}" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="Sand" class="btn">
+                </form>
+            </div>
+        </section>
+
+        <section class="bg-image4">
+        </section>
+
+        <section class="footer">
+            <div class="foot-menu foot-scroll">
+                <h1 id="footer-menu ">Menu</h1>
+                <ul>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#teachers">Teachers</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="foot-links foot-scroll">
+                <h1 id="footer-links">Links</h1>
+                {% if socials %}
+                <ul>
+                    {% for s in socials %}
+                    <li><a href="{{ s.links }}">{{ s.name }}({{ forloop.counter }})</a></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <h1 class="emp">Empty</h1>
+                {% endif %}
+            </div>
+
+        </section>
+
+        <a href="#header" id="up">&uharl;
+        </a>
+    </div>
+
+
+
+</body>
+
+</html>

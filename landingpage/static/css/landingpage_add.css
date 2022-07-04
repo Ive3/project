@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #FFFDDE;
+}
+
+.navbar{
+    background-color: #E7FBBE;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 2em 0;
+    border-bottom: 1px outset #E7FBBE;
+}
+
+.navbar .nav-link{
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #4a6e00;
+    border: 1px outset #E7FBBE;
+    padding: 0.5em 1em;
+    display: block;
+}
+
+.navbar .nav-link:hover{
+    background-color: #dffda2;
+    border: 1px inset #E7FBBE;
+
+}
+
+
+
+
+
+.add-form {
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-form .message{
+    border: 1px outset #E7FBBE;
+    background-color: #E7FBBE;
+    font-size: 1.3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    padding: 1em;
+    color: #4a6e00;
+    box-shadow: 0 5px 5px #92db00;
+
+}
+
+.add-form .message .closebtn{
+    cursor: pointer;
+}
+
+.add-form h1{
+    margin: 1em 1em 0;
+    color: #558000;
+    text-align: center;
+
+}
+
+.add-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2em 0;
+    color: #a19700;
+    width: 100%;
+}
+
+.add-form form ul {
+    list-style-type: none;
+    text-align: start;
+}
+
+
+.add-form form input, select{
+    background-color: #fff;
+    margin-bottom: 1em;
+    padding: .7em;
+    font-size: 1.2em;
+    width: 40%;
+    border: 2px outset #FFFDDE;
+    color: #978d00;
+
+}
+.add-form form input:focus, select:focus{
+    outline: none;
+    color: #978d00;
+    border: 2px inset #FFFDDE;
+
+}
+
+
+.add-form form label{
+    margin-top: 1em;
+    margin-bottom: 0.4em;
+    padding: 0;
+    font-size: 1.5em;
+    width: 30%;
+    text-align: center;
+}
+
+.add-form form input[type="checkbox" i] {
+    width: 1em;
+    height: 1em;
+    margin: .5em;
+}
+
+
+.add-form form .btn{
+    background: none;
+    background-color: #E7FBBE;
+    border-bottom:2px inset #7ebd00;
+    color: #6da300;
+}
+
+.add-form form .btn:focus{
+    background: none;
+    background-color: #effcd6;
+}
+
+
+/* Media -------------------------------------------- */
+@media (max-width:1600px){
+    .add-form form input, select{
+        width: 50%;
+    }
+    .add-form .message{
+        width: 50%;
+    
+    }
+}
+
+@media (max-width:992px){
+    .add-form form input, select{
+        width: 70%;
+    }
+    .add-form .message{
+        width: 70%;
+    
+    }
+}
+
+@media (max-width:768px){
+    .add-form form input, select{
+        width: 80%;
+    }
+    .add-form .message{
+        width: 80%;
+    
+    }
+}
+
+@media (max-width:576px){
+    .add-form form input, select{
+        width: 90%;
+        font-size: 1em;
+    }
+    .add-form .message{
+        width: 90%;
+        font-size: 1em;
+    }
+}

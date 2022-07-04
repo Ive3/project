@@ -1,0 +1,26 @@
+{% extends 'base_gallery/base_gallery.html' %}
+{% load static %}
+
+{% block title %}Gallery{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{% endblock css %}
+
+
+
+
+{% block content %}
+<section>
+    <div class="btns">
+        <a href="{% url 'gallery:gallery_list_2d' %}" class="d2">
+            <img src="{% static 'image/2d.png' %}" alt="">
+            2D
+        </a>
+        <a href="{% url 'gallery:gallery_list_3d' %}" class="d3">
+            <img src="{% static 'image/3d.png' %}" alt="">
+            3D
+        </a>
+    </div>
+</section>
+{% endblock content %}

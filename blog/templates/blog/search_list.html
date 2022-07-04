@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %} Blog::Search:{{ keyword }} {% endblock title %}
+
+
+{% block content %}
+<h2>Search: {{ keyword }}</h2>
+{% if posts %}
+
+<div class="posts">
+    {% for post in posts %}
+    <div class="post">
+        <a href="{% url 'blog:detail_post' post.slug %}{{ all }}" class="aimg"><img
+                src="{{ post.thumbnail.url }}" alt="image"></a>
+        <h3>{{ post.title }}</h3>
+        <div class="paragraph">{{ post.short_description|safe }}</div>
+        <a href="{% url 'blog:detail_post' post.slug %}{{ all }}" class="readmore">read more</a>
+        <aside>views: {{ post.views }}</aside>
+        <aside>added: {{ post.created }}</aside>
+    </div>
+    {% endfor %}
+
+</div>
+{% else %}
+<h2>Nothing</h2>
+{% endif %}
+
+{% if page_obj.has_other_pages %}
+<div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?{% if keyword %}q={{keyword}}&{% endif %}page=1">First</a>
+        <a href="?{% if keyword %}q={{keyword}}&{% endif %}page={{ page_obj.previous_page_number }}">&lt;</a>
+        {% endif %}
+
+        <a href="">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a>
+
+        {% if page_obj.has_next %}
+        <a href="?{% if keyword %}q={{keyword}}&{% endif %}page={{ page_obj.next_page_number }}">&gt;</a>
+        <a href="?{% if keyword %}q={{keyword}}&{% endif %}page={{ page_obj.paginator.num_pages }}">Last</a>
+
+        {% endif %}
+</div>
+{% endif %}
+
+{% endblock content %}

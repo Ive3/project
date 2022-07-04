@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #FFFDDE;
+}
+
+.navbar{
+    background-color: #FFCBCB;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 2em 0;
+    border-bottom: 1px outset #FFCBCB;
+}
+
+.navbar .nav-link{
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #7a0000;
+    border: 1px outset #FFCBCB;
+    padding: 0.5em 1em;
+    display: block;
+}
+
+.navbar .nav-link:hover{
+    background-color: #faaeae;
+    border: 1px inset #FFCBCB;
+
+}
+
+.delete{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.delete h1{
+    color: #7a0000;
+    margin: .5em .5em 1em;
+    text-align: center;
+}
+
+.delete .del-card {
+    width: 30vw;
+    border: 2px inset #FFCBCB;
+    background-color: #ffe7e7;
+
+}
+
+
+
+.del-card .card {
+    padding: 5%;
+    height: 100%;
+    color: #7a0000;
+    text-align: center;
+}
+
+.del-card .card .del-table{
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+ 
+.del-card .card .del-table thead th{
+    border: none;
+    font-size: 1.5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+.del-card .card .del-table thead th i{
+    font-size: 5em;
+}
+
+.del-card .card .del-table thead th img{
+    border: 2px inset #FFCBCB;
+    width: 60%;
+}
+
+
+.del-card .card .del-table .del-tbody th{
+    border-bottom: 1px inset #ffa4a4;
+    padding: 1em 0.5em;
+    font-size: 1em;
+    vertical-align: middle;
+    text-align: start;
+}
+
+.del-card .card .del-table .del-tbody td{
+    border-bottom: 1px inset #ffa4a4;
+    padding: 1em 0.5em;
+    font-size: 1em;
+    vertical-align: middle;
+    text-align: start;
+    width: 100%;
+
+}
+
+
+.del-card .card .del-table .del-tbody th i{
+    font-size: 2em;
+    text-align: center;
+    padding-left: 1em;
+}
+
+.del-card .card .del-table .del-tfoot th{
+    padding-top: 1em;
+    font-size: 2em;
+}
+
+
+
+.delete-btn .btn{
+    background-color: #FFCBCB;
+    border:1px outset #FFCBCB;
+    color: #7a0000;
+    font-size: 1.4em;
+    padding: .6em;
+    width: 100%;
+    margin: 1em 0;
+}
+
+.delete-btn .btn:focus{
+    outline: none;
+    border-bottom:1px inset #FFCBCB;
+    background-color: #faaeae;
+    color: #7a0000;
+
+}
+
+
+
+/* media ------------------------ */
+
+@media (max-width:1440px) {
+    .delete .del-card {
+        min-width: 50vw;
+    }
+
+
+}
+
+@media (max-width:1024px) {
+    .delete .del-card {
+        min-width: 60vw;
+    }
+
+
+}
+
+@media (max-width:768px) {
+
+    .delete .del-card {
+        min-width: 70vw;
+    }
+
+    .del-card .card .del-table .del-tbody th i{
+        font-size: 1.4em;
+        padding-left: 0;
+    }
+    
+
+}
+
+@media (max-width:576px) {
+
+
+    .delete .del-card {
+        min-width: 80vw;
+        font-size: 1em;
+    }
+
+    .del-card .card .title-card {
+        font-size: 1.3em;
+    }
+    
+    .del-card .card .body-card p {
+        font-size: 1em;
+    }
+
+    .del-card .card .foot-card .price {
+        font-size: 1.3em;
+    }
+}
+
+
+
+
+@media (max-width:480px) {
+
+
+
+    .delete .del-card {
+        min-width: 90vw;
+
+    }
+
+
+}

@@ -1,0 +1,57 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}Shop::Search:{{keyword}} {% endblock title %}
+
+
+{% block content %}
+<!-- main section --------------------------------------- -->
+
+<section class="container pb-5">
+
+    <div class="row mt-3">
+        <h3 class="mb-5 pb-3 border-bottom">Search: {{ keyword }}</h3>
+
+        {% if products %}
+
+        <div class="col-lg-12">
+            <div class="row">
+
+                {% for product in products %}
+                <div class="col-lg-12 mb-3">
+                    <div class="card p-1 shadow-sm">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{{ product.thumbnail.url }}" alt="" class="img-fluid img-thumbnail">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <h3 class="card-title">
+                                        {{ product.name }}
+                                    </h3>
+                                    <h4>{{ product.price }}$</h4>
+                                    <div class="">
+                                        <aside>Added: {{ product.created_at }}</aside>
+                                        <aside>Category: {{ product.category }}</aside>
+                                        <a href="{{ product.get_absolute_url }}"
+                                            class="stretched-link">Watch</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% include 'inc/paginator.html' %}
+        </div>
+
+        {% else %}
+        <h3 class="text-secondary text-center">Empty</h3>
+        {% endif %}
+    </div>
+
+
+</section>
+<!-- end main section --------------------------------------- -->
+{% endblock content %}

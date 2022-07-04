@@ -1,0 +1,52 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %} Blog::Delete post {% endblock title %}
+
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+
+<h2>Delete page</h2>
+<div class="posts">
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+
+        <img class="thumbnail" src="{{ post.thumbnail.url }}" alt="image">
+        <div class="paragraph">{{ post.text|safe }}</div>
+
+        {% if eis %}
+        <h3>images</h3>
+        <div class="images">
+            {% for ei in eis %}
+            <img src="{{ ei.image.url }}" alt="image">
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if post.video %}
+        <h3>video</h3>
+        <video controls>
+            <source type="video/mp4" src="{{ post.video.url }}">
+        </video>
+        {% endif %}
+
+        <aside>Author: {{ post.author }}</aside>
+        <aside>Category: {{ post.category }}</aside>
+        <aside>views: {{ post.views }}</aside>
+        <aside>likes: {{ post.total_likes }}</aside>
+        <aside>comments: {{ post.comment_set.count }}</aside>
+        <aside>added: {{ post.created }}</aside>
+        <aside>changed: {{ post.changed }}</aside>
+      <form class="likes" action="" method="post">
+        {% csrf_token %}
+        <input class="unlike" type="submit" id="readmore" value="Delete post">
+      </form>
+        <a href="{% url 'blog:user_detail_post' post.slug %}" class="readmore">back</a>
+    </div>
+</div>
+
+
+{% endblock content %}

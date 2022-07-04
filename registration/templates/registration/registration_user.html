@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account::Registraion</title>
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon-32x32.png' %}" type="image/x-icon">
+
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>Registraion</h1>
+    </header>
+    <section>
+        <form action="{% url 'registration:registration' %}" method="post">
+            {% csrf_token %}
+            <h1>Fields have got '*' have to fill</h1>
+            {{ form }}
+            {{ myform }}
+            <input class="submit" type="submit" value="Sign up">
+
+        </form>
+        <div class="registration">
+
+            <a href="{% url 'mainapp:index' %}">Main page</a>
+
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

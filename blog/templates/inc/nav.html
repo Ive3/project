@@ -1,0 +1,26 @@
+<a href="#menu-sm" class="m">Menu</a>
+
+<nav class="menu" id="menu-sm">
+        <a href="" class="closenav">Close</a>
+        <form action="{% url 'blog:search_list' %}" method="get">
+            <label for="search">Search</label>
+            <input type="search" id="search" name="q">
+            <input type="submit">
+        </form>
+        <h3>Menu</h3>
+        <ul>
+            <li><a href="{% url 'mainapp:index' %}">Main Page</a></li>
+            <li><a href="{% url 'blog:posts' %}">Blog Page</a></li>
+            <li><a href="{% url 'blog:categories_list' %}">Categories</a></li>
+            <li><a href="{% url 'blog:about' %}">About</a></li>
+            {% if user.is_authenticated %}
+            <hr>
+            <li><a href="{% url 'blog:user_posts' user.pk %}">User posts</a></li>
+            <li><a href="{% url 'blog:create_post' %}">Create post</a></li>
+            <li><a href="{% url 'blog:create_category' %}">Create category</a></li>
+            {% else %}
+            <li><a href="{% url 'mainapp:index' %}">Login or registration to add post</a></li>
+
+            {% endif %}
+        </ul>
+</nav>

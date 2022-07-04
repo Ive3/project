@@ -1,0 +1,74 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+
+{% block title %} Blog::{{ request.user.username}}'s post:{{post.title}}{% endblock title %}
+
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock csslink %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="message">
+    {{ message }}
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+</div>
+{% endfor %}
+{% endif %}
+<h2>Detail view</h2>
+<div class="posts">
+    <div class="post">
+        <div class="edit">
+            <a href="{% url 'blog:update_post' post.slug %}" class="update">update</a>
+            <a href="{% url 'blog:delete_post' post.slug %}" class="delete">delete</a>
+        </div>
+
+        <h2>{{ post.title }}</h2>
+
+
+        <img class="thumbnail" src="{{ post.thumbnail.url }}" alt="image">
+
+        <div class="paragraph">{{ post.text|safe }}</div>
+
+        {% if eis %}
+        <h2>images</h2>
+        <div class="images">
+            {% for ei in eis %}
+            <img src="{{ ei.image.url }}" alt="image">
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if post.video %}
+        <h2>video</h2>
+        <video controls>
+            <source type="video/mp4" src="{{ post.video.url }}">
+        </video>
+        {% endif %}
+
+        <aside class="">Author: {{ post.author }}</aside>
+        <aside class="">Category: {{ post.category }}</aside>
+        <aside class="">views: {{post.views}} &#128065;</aside>
+        <aside class="">added: {{ post.created }}</aside>
+        <aside class="">changed: {{ post.changed }}</aside>
+
+        <a href="{% url 'blog:user_posts' user.pk %}{{ all }}" class="readmore">back</a>
+    </div>
+</div>
+<div class="comments">
+    <h2>Comments</h2>
+    {% for comment in comments %}
+    <div class="com">
+        <aside>{{ comment.name }} | {{ comment.created }}</aside>
+        <div class="comment-text">{{ comment.text|safe }}</div>
+        <a href="{% url 'blog:delete_comment' comment.pk %}" class="del">delete</a>
+
+    </div>
+    {% endfor %}
+
+
+</div>
+{% endblock content %}
